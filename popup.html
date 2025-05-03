@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Form Filler</title>
+  <script src="lib/pdf.js"></script>
+  <script>
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'lib/pdf.worker.js';
+  </script>
+  <style>
+    body {
+      width: 300px;
+      padding: 10px;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .button {
+      padding: 8px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .button:hover {
+      background-color: #45a049;
+    }
+    #learnButton {
+      background-color: #2196F3;
+    }
+    #learnButton:hover {
+      background-color: #1976D2;
+    }
+    #fillButton {
+      background-color: #4CAF50;
+    }
+    #fillButton:hover {
+      background-color: #45a049;
+    }
+    #uploadPdfBtn {
+      background-color: #FF9800;
+    }
+    #uploadPdfBtn:hover {
+      background-color: #F57C00;
+    }
+    .loading {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    #statusMessage {
+      margin-top: 10px;
+      padding: 8px;
+      border-radius: 4px;
+      font-size: 14px;
+      display: none;
+    }
+
+    .status-info {
+      background-color: #E3F2FD;
+      color: #1976D2;
+      border: 1px solid #1976D2;
+    }
+
+    .status-success {
+      background-color: #E8F5E9;
+      color: #2E7D32;
+      border: 1px solid #2E7D32;
+    }
+
+    .status-error {
+      background-color: #FFEBEE;
+      color: #C62828;
+      border: 1px solid #C62828;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .spinner {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border: 2px solid currentColor;
+      border-radius: 50%;
+      border-right-color: transparent;
+      animation: spin 1s linear infinite;
+      margin-right: 8px;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div id="apiInputContainer">
+      <input type="password" id="apiKey" placeholder="Enter OpenAI API Key">
+      <button id="saveKey" class="button">Save API Key</button>
+    </div>
+    <button id="fillButton" class="button">Autofill Form</button>
+    <button id="learnButton" class="button">Learn New Information</button>
+    <div class="pdf-upload-container">
+      <input type="file" id="pdfInput" accept=".pdf" style="display: none;">
+      <button id="uploadPdfBtn" class="button">Upload PDF</button>
+    </div>
+    <div id="statusMessage"></div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>
